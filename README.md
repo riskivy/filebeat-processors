@@ -41,11 +41,11 @@ import (
 	_ "github.com/elastic/beats/v7/libbeat/processors/registered_domain"
 	_ "github.com/elastic/beats/v7/libbeat/processors/translate_sid"
 	_ "github.com/elastic/beats/v7/libbeat/publisher/includes" // Register publisher pipeline modules
-+	_ "github.com/ytpay/filebeat-processors/add_filename"
-+	_ "github.com/ytpay/filebeat-processors/add_prefix"
-+	_ "github.com/ytpay/filebeat-processors/add_log_type"
-+	_ "github.com/ytpay/filebeat-processors/split_message"
-+	_ "github.com/ytpay/filebeat-processors/regex_extract"
++	_ "github.com/riskivy/filebeat-processors/add_filename"
++	_ "github.com/riskivy/filebeat-processors/add_prefix"
++	_ "github.com/riskivy/filebeat-processors/add_log_type"
++	_ "github.com/riskivy/filebeat-processors/split_message"
++	_ "github.com/riskivy/filebeat-processors/regex_extract"
 )
 ```
 
@@ -53,8 +53,8 @@ import (
 
 关于每个 processor 的具体配置请查看 processor 目录下的 README.md 文档，以下为 processor 列表:
 
-- [add_filename](https://github.com/ytpay/filebeat-processors/blob/master/add_filename/README.md)
-- [add_log_type](https://github.com/ytpay/filebeat-processors/blob/master/add_log_type/README.md)
-- [add_prefix](https://github.com/ytpay/filebeat-processors/blob/master/add_prefix/README.md)
-- [regex_extract](https://github.com/ytpay/filebeat-processors/blob/master/regex_extract/README.md)
-- [split_message](https://github.com/ytpay/filebeat-processors/blob/master/split_message/README.md)
+- [add_filename](https://github.com/riskivy/filebeat-processors/blob/master/add_filename/README.md)
+- [add_log_type](https://github.com/riskivy/filebeat-processors/blob/master/add_log_type/README.md)
+- [add_prefix](https://github.com/riskivy/filebeat-processors/blob/master/add_prefix/README.md)
+- [regex_extract](https://github.com/riskivy/filebeat-processors/blob/master/regex_extract/README.md)
+- [split_message](https://github.com/riskivy/filebeat-processors/blob/master/split_message/README.md)
