@@ -1,4 +1,4 @@
-module github.com/ytpay/filebeat-processors
+module github.com/riskivy/filebeat-processors
 
 go 1.16
 
