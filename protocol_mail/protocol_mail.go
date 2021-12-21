@@ -3,7 +3,6 @@ package protocol_mail
 import (
 	"fmt"
 	"net/mail"
-	"strings"
 
 	"github.com/jhillyerd/go.enmime"
 	"github.com/elastic/beats/v7/libbeat/logp"
@@ -51,8 +50,7 @@ func (p *ProtocolMail) Run(event *beat.Event) (*beat.Event, error) {
 		return event, errors.Wrapf(err, "failed to get source field %s", p.SourceField)
 	}
 
-	mailMessage := strings.NewReader(rawMail)
-	msg, _ := mail.ReadMessage(mailMessage)
+	msg, _ := mail.ReadMessage(rawMail)
 	mime, _ := enmime.ParseMIMEBody(msg)
 
 	event.PutValue("subject", mime.GetHeader("Subject"))
