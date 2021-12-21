@@ -4,4 +4,5 @@ import (
  	_ "github.com/riskivy/filebeat-processors/add_log_type"
  	_ "github.com/riskivy/filebeat-processors/split_message"
  	_ "github.com/riskivy/filebeat-processors/regex_extract"
+ 	_ "github.com/riskivy/filebeat-processors/protocol_mail"
 )
