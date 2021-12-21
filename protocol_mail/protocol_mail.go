@@ -61,5 +61,5 @@ func (p *ProtocolMail) Run(event *beat.Event) (*beat.Event, error) {
 }
 
 func (p *ProtocolMail) String() string {
-	return fmt.Sprintf("protocol_mail=[source_field=%s,target_field=%s]", p.SourceField, p.TargetField)
+	return fmt.Sprintf("protocol_mail=[source_field=%s]", p.SourceField)
 }
