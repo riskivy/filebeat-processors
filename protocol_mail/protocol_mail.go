@@ -43,10 +43,14 @@ func New(cfg *common.Config) (processors.Processor, error) {
 }
 
 func (p *ProtocolMail) Run(event *beat.Event) (*beat.Event, error) {
-	p.log.Debugf("========== ProtocolMail Start ==========")
+	_, err = event.PutValue(p.TargetField, "test")
+	if err != nil {
+		if p.IgnoreFailure {
+			return event, nil
+		}
+		return event, errors.Wrapf(err, "failed to put event value key: %s, value: %s", p.TargetField, "test")
+	}
 
-
-	p.log.Debugf("========== ProtocolMail End ==========")
 	return event, nil
 }
 
