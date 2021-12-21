@@ -12,9 +12,6 @@ processors:
       # 源字段，protocol_mail processor 从此字段读取到一个文件名，然后按照分隔符提取前缀
       # 此配置默认值为 "row_mail"
       source_field: "row_mail"
-      # 目标字段，protocol_mail processor 提取前缀成功后将其写入到目标字段中
-      # 此配置默认值为 "mail"
-      target_field: "mail"
       # processor 标记位，protocol_mail processor 处理成功后会将此字段设置为 true
       # 通常该字段用于标识作用，方便后面的 logstash 判断 event 是否被某个 processor 处理过
       # 此配置默认值为 "processors.protocol_mail"

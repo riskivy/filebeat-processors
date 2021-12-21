@@ -2,7 +2,9 @@ package protocol_mail
 
 import (
 	"fmt"
+	"net/mail"
 
+	"github.com/jhillyerd/go.enmime"
 	"github.com/elastic/beats/v7/libbeat/logp"
 	"github.com/pkg/errors"
 
@@ -43,13 +45,16 @@ func New(cfg *common.Config) (processors.Processor, error) {
 }
 
 func (p *ProtocolMail) Run(event *beat.Event) (*beat.Event, error) {
-	_, err := event.PutValue(p.TargetField, "test")
+	rawMail, err := event.GetValue(p.SourceField)
 	if err != nil {
-		if p.IgnoreFailure {
-			return event, nil
-		}
-		return event, errors.Wrapf(err, "failed to put event value key: %s, value: %s", p.TargetField, "test")
+		return event, errors.Wrapf(err, "failed to get source field %s", p.SourceField)
 	}
+
+	mailMessage := strings.NewReader(rawMail)
+	msg, _ := mail.ReadMessage(mailMessage)
+	mime, _ := enmime.ParseMIMEBody(msg)
+
+	event.PutValue("subject", mime.GetHeader("Subject"))
 
 	return event, nil
 }
