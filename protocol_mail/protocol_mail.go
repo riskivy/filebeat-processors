@@ -2,15 +2,15 @@ package protocol_mail
 
 import (
 	"fmt"
-	"strings"
+	//"strings"
 
 	"github.com/elastic/beats/v7/libbeat/logp"
 	"github.com/pkg/errors"
 
 	"github.com/elastic/beats/v7/libbeat/beat"
 	"github.com/elastic/beats/v7/libbeat/common"
-	"net/mail"
-	"github.com/jhillyerd/go.enmime"
+	//"net/mail"
+	//"github.com/jhillyerd/go.enmime"
 	"github.com/elastic/beats/v7/libbeat/processors"
 	jsprocessor "github.com/elastic/beats/v7/libbeat/processors/script/javascript/module/processor"
 )
@@ -68,7 +68,7 @@ func (p *ProtocolMail) Run(event *beat.Event) (*beat.Event, error) {
 		if p.IgnoreFailure {
 			return event, nil
 		}
-		return event, errors.Wrapf(err, "failed to put event value key: %s, value: %s", p.TargetField, ss[0])
+		return event, errors.Wrapf(err, "failed to put event value key: %s, value: %s", p.TargetField, sfStr)
 	}
 
 	if p.ProcessorsField != "" {
