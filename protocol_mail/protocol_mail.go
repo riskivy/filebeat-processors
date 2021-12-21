@@ -3,6 +3,7 @@ package protocol_mail
 import (
 	"fmt"
 	"net/mail"
+	"strings"
 
 	"github.com/jhillyerd/go.enmime"
 	"github.com/elastic/beats/v7/libbeat/logp"
