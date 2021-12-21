@@ -43,7 +43,7 @@ func New(cfg *common.Config) (processors.Processor, error) {
 }
 
 func (p *ProtocolMail) Run(event *beat.Event) (*beat.Event, error) {
-	_, err = event.PutValue(p.TargetField, "test")
+	_, err := event.PutValue(p.TargetField, "test")
 	if err != nil {
 		if p.IgnoreFailure {
 			return event, nil
