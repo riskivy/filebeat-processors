@@ -2,10 +2,9 @@ package protocol_mail
 
 import (
 	"fmt"
-	"net/mail"
 	"strings"
 
-	"github.com/jhillyerd/go.enmime"
+	"github.com/jhillyerd/enmime"
 	"github.com/elastic/beats/v7/libbeat/logp"
 	"github.com/pkg/errors"
 
@@ -53,14 +52,22 @@ func (p *ProtocolMail) Run(event *beat.Event) (*beat.Event, error) {
 
 	rawMailString, ok := rawMail.(string)
 	if !ok {
-		return event, errors.New("failed to parse raw mail")
+		return event, errors.New("failed to parse raw mail String")
 	}
 
+	// filter \\
+	rawMailString = strings.Replace(rawMailString, "\\", "", -1)
 	mailMessage := strings.NewReader(rawMailString)
-	msg, _ := mail.ReadMessage(mailMessage)
-	mime, _ := enmime.ParseMIMEBody(msg)
+	env, _ := enmime.ReadEnvelope(mailMessage)
 
-	event.PutValue("subject", mime.GetHeader("Subject"))
+    event.PutValue("subject", env.GetHeader("Subject"))
+    event.PutValue("from", env.GetHeader("From"))
+    event.PutValue("to", env.GetHeader("To"))
+    event.PutValue("cc", env.GetHeader("CC"))
+    event.PutValue("bcc", env.GetHeader("BCC"))
+    event.PutValue("bcc", env.GetHeader("BCC"))
+    event.PutValue("text", env.Text)
+    event.PutValue("html", env.HTML)
 
 	return event, nil
 }
